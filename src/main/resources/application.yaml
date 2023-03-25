@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://dpg-cg3m9b9mbg5fch5veac0-a.oregon-postgres.render.com/learning_sql_db_g8ls
+    username: dbuser
+    password: KofpfFXO00PThiZTaSRfKYPaTiCIvPcs
+  jpa:
+     properties:
+         hibernate:
+           show_sql: true
+           format_sql: true
+server:
+  servlet:
+    context-path: /cbook
