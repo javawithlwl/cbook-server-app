@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -14,6 +15,10 @@ public class ContactServiceImpl implements  ContactService{
     private final ContactRepo contactRepo;
     @Override
     public Contact addContact(Contact contact) {
+        Optional<Contact> optContact = contactRepo.findByMobile(contact.getMobile());
+        if(optContact.isPresent()){
+            throw new IllegalArgumentException("Contact with mobile number :"+contact.getMobile()+" already exists");
+        }
         return contactRepo.save(contact);
     }
 
