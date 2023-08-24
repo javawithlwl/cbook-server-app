@@ -15,7 +15,7 @@ public class ContactController {
 
         private final ContactService contactService;
         @PostMapping
-        public ResponseEntity<Contact> addContact(Contact contact){
+        public ResponseEntity<Contact> addContact(@RequestBody Contact contact){
             return ResponseEntity.ok(contactService.addContact(contact));
         }
         @GetMapping("/all")
