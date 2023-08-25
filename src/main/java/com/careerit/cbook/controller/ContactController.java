@@ -1,6 +1,7 @@
 package com.careerit.cbook.controller;
 
 import com.careerit.cbook.domain.Contact;
+import com.careerit.cbook.dto.ApiResponse;
 import com.careerit.cbook.service.ContactService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -31,9 +32,11 @@ public class ContactController {
             return ResponseEntity.ok(contactService.updateContact(contact));
         }
         @DeleteMapping("/{id}")
-        public ResponseEntity<String> deleteContact(@PathVariable("id") String id){
+        public ResponseEntity<ApiResponse> deleteContact(@PathVariable("id") String id){
             contactService.deleteContact(id);
-            return ResponseEntity.ok("Contact deleted with id :"+id);
+            ApiResponse apiResponse = new ApiResponse();
+            apiResponse.setMessage("Contact deleted with id :"+id);
+            return ResponseEntity.ok(apiResponse);
         }
         @GetMapping("/{id}")
         public ResponseEntity<Contact> getContact(@PathVariable("id") String id){
