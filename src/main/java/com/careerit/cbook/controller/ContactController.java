@@ -14,33 +14,39 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ContactController {
 
-        private final ContactService contactService;
-        @PostMapping
-        public ResponseEntity<Contact> addContact(@RequestBody Contact contact){
-            return ResponseEntity.ok(contactService.addContact(contact));
-        }
-        @GetMapping("/all")
-        public ResponseEntity<List<Contact>> getContacts(){
-            return ResponseEntity.ok(contactService.getContacts());
-        }
-        @GetMapping("/search")
-        public ResponseEntity<List<Contact>> search(@RequestParam("str") String str){
-            return ResponseEntity.ok(contactService.search(str));
-        }
-        @PutMapping
-        public ResponseEntity<Contact> updateContact(Contact contact){
-            return ResponseEntity.ok(contactService.updateContact(contact));
-        }
-        @DeleteMapping("/{id}")
-        public ResponseEntity<ApiResponse> deleteContact(@PathVariable("id") String id){
-            contactService.deleteContact(id);
-            ApiResponse apiResponse = new ApiResponse();
-            apiResponse.setMessage("Contact deleted with id :"+id);
-            return ResponseEntity.ok(apiResponse);
-        }
-        @GetMapping("/{id}")
-        public ResponseEntity<Contact> getContact(@PathVariable("id") String id){
-            return ResponseEntity.ok(contactService.getContact(id));
-        }
+    private final ContactService contactService;
+
+    @PostMapping
+    public ResponseEntity<Contact> addContact(@RequestBody Contact contact) {
+        return ResponseEntity.ok(contactService.addContact(contact));
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<Contact>> getContacts() {
+        return ResponseEntity.ok(contactService.getContacts());
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<Contact>> search(@RequestParam("str") String str) {
+        return ResponseEntity.ok(contactService.search(str));
+    }
+
+    @PutMapping
+    public ResponseEntity<Contact> updateContact(Contact contact) {
+        return ResponseEntity.ok(contactService.updateContact(contact));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ApiResponse> deleteContact(@PathVariable("id") String id) {
+        contactService.deleteContact(id);
+        ApiResponse apiResponse = new ApiResponse();
+        apiResponse.setMessage("Contact deleted with id :" + id);
+        return ResponseEntity.ok(apiResponse);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Contact> getContact(@PathVariable("id") String id) {
+        return ResponseEntity.ok(contactService.getContact(id));
+    }
 
 }
