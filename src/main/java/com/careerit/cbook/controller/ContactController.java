@@ -32,7 +32,7 @@ public class ContactController {
     }
 
     @PutMapping
-    public ResponseEntity<Contact> updateContact(Contact contact) {
+    public ResponseEntity<Contact> updateContact(@RequestBody Contact contact) {
         return ResponseEntity.ok(contactService.updateContact(contact));
     }
 
