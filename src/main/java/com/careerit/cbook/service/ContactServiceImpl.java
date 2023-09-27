@@ -5,6 +5,7 @@ import com.careerit.cbook.repo.ContactRepo;
 import com.careerit.cbook.service.exception.ContactAlreadyExistsException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import java.util.List;
 import java.util.Optional;
@@ -31,6 +32,9 @@ public class ContactServiceImpl implements ContactService {
 
     @Override
     public Contact updateContact(Contact contact) {
+        Assert.notNull(contact.getId(), "Id should not be null");
+        Assert.notNull(contact.getName(), "Name should not be null");
+        Assert.notNull(contact.getMobile(), "Mobile should not be null");
         return contactRepo.save(contact);
     }
 
